@@ -102,3 +102,8 @@ progress.projected {
 .status-needed {
   color: #b91c1c;
 }
+
+.material-symbols-outlined {
+  vertical-align: middle;
+  margin-right: 4px;
+}

@@ -7,6 +7,13 @@ const STATUS_LABELS = {
   needed: "Needed",
 };
 
+const STATUS_ICONS = {
+  completed: "check_circle",
+  in_progress: "schedule",
+  planned: "edit_calendar",
+  needed: "radio_button_unchecked",
+};
+
 const openCategories = new Set();
 let planMode = false;
 const modeToggle = document.getElementById("plan-mode");
@@ -156,8 +163,13 @@ function renderCourses(parent, reqId, courses) {
     course.appendChild(el("div", c.title));
     row.appendChild(course);
     row.appendChild(el("td", c.credits));
-    row.appendChild(el("td", STATUS_LABELS[status] || status));
-    const actions = el("td");
+    const statusCell = el("td");
+    const statusIcon = el("span", STATUS_ICONS[status]);
+    statusIcon.className = "material-symbols-outlined";
+    statusIcon.setAttribute("aria-hidden", "true");
+    statusCell.appendChild(statusIcon);
+    statusCell.appendChild(el("span", STATUS_LABELS[status]));
+    row.appendChild(statusCell);    const actions = el("td");
 
     if (planMode && c.status === "needed") {
       const btn = el("button", "+ Add to Plan");
