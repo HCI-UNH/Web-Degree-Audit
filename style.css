@@ -80,10 +80,25 @@ body.plan-mode::after {
   content: "";
   position: fixed;
   inset: 0;
-  border: 8px solid #f97316;
+  border: 8px solid #c2410c;
   pointer-events: none;
 }
 
 progress.projected {
-  accent-color: #f97316;
+  accent-color: #c2410c;
+}
+.status-completed {
+  color: #15803d;
+}
+
+.status-in_progress {
+  color: #1d4ed8;
+}
+
+.status-planned {
+  color: #c2410c;
+}
+
+.status-needed {
+  color: #b91c1c;
 }

@@ -150,6 +150,7 @@ function renderCourses(parent, reqId, courses) {
   for (const c of courses) {
     const status = c.status === "planned" && !planMode ? "needed" : c.status;
     const row = el("tr");
+    row.className = "status-" + status;
     const course = el("td");
     course.appendChild(el("strong", c.code));
     course.appendChild(el("div", c.title));
