@@ -28,6 +28,7 @@ modeToggle.addEventListener("change", async () => {
     modeToggle.checked = planMode;
   }
   modeToggle.disabled = false;
+  modeToggle.focus(); 
 });
 
 async function apiGet(path, fallback = {}) {
@@ -73,13 +74,17 @@ function el(tag, text) {
 
 async function addToPlan(reqId, code) {
   if (await apiPost("/plan/add", { req_id: reqId, code })) {
-    renderAudit();
+    await renderAudit();                      
+    window.focusPlanButton?.(code);           
+    window.announce?.(`${code} added to plan`);
   }
 }
 
 async function removeFromPlan(reqId, code) {
   if (await apiPost("/plan/remove", { req_id: reqId, code })) {
-    renderAudit();
+    await renderAudit();                      
+    window.focusPlanButton?.(code);           
+    window.announce?.(`${code} removed from plan`);
   }
 }
 
@@ -134,6 +139,7 @@ async function renderAudit() {
     renderCourses(details, req.id, req.courses);
     container.appendChild(details);
   }
+  window.afterRender?.(percentComplete, percentProjected);
 }
 
 function renderCourses(parent, reqId, courses) {
