@@ -137,6 +137,15 @@ async function renderAudit() {
       `${req.name} (${req.credits_completed}/${req.credits_required} credits${plannedNote})`));
 
     renderCourses(details, req.id, req.courses);
+
+    const closeButton = el('button', "Close");
+    closeButton.className = "close-button";
+    closeButton.addEventListener("click",()=> {
+      openCategories.delete(req.id);
+      details.open = false;
+    });
+    details.appendChild(closeButton);
+
     container.appendChild(details);
   }
   window.afterRender?.(percentComplete, percentProjected);

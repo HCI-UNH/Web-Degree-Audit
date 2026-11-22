@@ -68,6 +68,11 @@ summary {
   cursor: pointer;
 }
 
+.close-button {
+  padding: 5px;
+  margin: 5px;
+}
+
 #error { 
   color: #b00020; 
 }
